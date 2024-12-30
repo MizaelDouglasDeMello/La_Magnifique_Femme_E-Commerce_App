@@ -1,5 +1,8 @@
 package br.com.mizaeldouglas.laMagnifiqueFemmeApp.data.remote.retrofit
 
+import br.com.mizaeldouglas.laMagnifiqueFemmeApp.model.LoginResponse
+import br.com.mizaeldouglas.laMagnifiqueFemmeApp.model.ProductResponseItem
+import br.com.mizaeldouglas.laMagnifiqueFemmeApp.model.UserResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -14,7 +17,7 @@ interface ApiService {
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String
-    ) // : LoginResponse
+    )  : LoginResponse
 
     @FormUrlEncoded
     @POST("users")
@@ -22,7 +25,7 @@ interface ApiService {
         @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ) //: UserResponse
+    ) : UserResponse
 
     @GET("products")
     suspend fun getAllProduct(
@@ -32,7 +35,7 @@ interface ApiService {
     @GET("products")
     suspend fun sortProduct(
         @Query("sort") sort: String
-    )//: List<ProductResponseItem>
+    ): List<ProductResponseItem>
 
     @GET("products/category/{category}")
     suspend fun getProductByCategory(
@@ -40,11 +43,11 @@ interface ApiService {
         category: String,
         @Query("limit")
         limit: Int
-    )//: List<ProductResponseItem>
+    ): List<ProductResponseItem>
 
     @GET("products/{id}")
     suspend fun getSingleProduct(
         @Path("id")
         id: Int
-    )//: ProductResponseItem
+    ): ProductResponseItem
 }
